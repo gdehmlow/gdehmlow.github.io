@@ -1,0 +1,16 @@
+- render 'head' do
+  .container.home
+    .top2
+      .logo2
+        a href="/"
+      a.name href="/"
+        h1 
+          strong Greg 
+          | Dehmlow
+      .clear
+    hr
+    h2
+      = @item[:title]
+    == yield
+    span.end ■
+    .clear

@@ -1,0 +1,17 @@
+- render 'head' do
+    header
+      nav
+        .logo
+          a href="/"
+        ul
+          li
+            a href="/" home
+          li
+            a.current href="/thoughts" thoughts
+          li
+            a href="/projects" projects
+    section
+      article
+        == yield
+    .push
+== render 'foot'

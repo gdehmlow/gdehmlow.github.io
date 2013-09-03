@@ -1,0 +1,87 @@
+#!/usr/bin/env ruby
+
+require "bourbon"
+require "neat"
+
+compile '/assets/css/*' do
+  case item[:extension]
+  when 'sass'
+    filter :sass
+    # filter :rainpress
+  when 'css'
+    filter :rainpress
+  end
+end
+
+# Compiles thoughts pages, e.g. /thoughts/first-post/
+compile %r{^\/thoughts\/.*\/} do
+  if item.binary?
+  else
+    if item[:extension] == 'md'
+      filter :kramdown
+    end
+    layout 'default'
+  end
+end
+
+# Compiles thoughts page, e.g. /thoughts/
+compile '/thoughts/*' do
+  unless item.binary?
+    case item[:extension]
+    when 'md'
+      filter :kramdown
+    else
+    end
+    layout 'default'
+  end
+end
+
+# Compiles projects pages, e.g. /projects/first-project/
+compile %r{^\/projects\/.*\/} do
+  if item.binary?
+  else
+    if item[:extension] == 'md'
+      filter :kramdown
+    end
+    layout 'default'
+  end
+end
+
+# Compiles projects page, e.g. /projects/
+compile '/projects/*' do
+  unless item.binary?
+    case item[:extension]
+    when 'md'
+      filter :kramdown
+    else
+    end
+    layout 'default'
+  end
+end
+
+compile '*' do
+  unless item.binary?
+    case item[:extension]
+    when 'md'
+      filter :kramdown
+    else
+    end
+    layout 'home'
+  end
+end
+
+route '/assets/css/*' do
+  item.identifier.chop + '.css'
+end
+
+route '*' do
+  if item.binary? or item[:extension] == 'js'
+    # Write item with identifier /foo/ to /foo.ext
+    item.identifier.chop + '.' + item[:extension]
+  else
+    # Write item with identifier /foo/ to /foo/index.html
+    item.identifier + 'index.html'
+  end
+end
+
+layout '*', :slim

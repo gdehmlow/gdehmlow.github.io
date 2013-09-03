@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title ="gdehmlow - #{@item[:title]}"
+    meta charset="utf-8"
+    link rel="stylesheet" href="/assets/css/normalize.css"
+    link rel="stylesheet" href="/assets/css/prettify.css"
+    link rel="stylesheet" href="/assets/css/style.css"
+
+    link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/images/apple-touch-icon-144x144-precomposed.png"
+    link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/images/apple-touch-icon-114x114-precomposed.png"
+    link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/images/apple-touch-icon-72x72-precomposed.png"
+    link rel="apple-touch-icon-precomposed" href="/assets/images/apple-touch-icon-57x57-precomposed.png"
+    link rel="shortcut icon" href="/favicon.ico"
+body
+  .wrapper 
+    == yield
+  script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"
+      script src="/assets/js/prettify.js" type="text/javascript"
+      javascript:
+        $(function() {
+          $('pre').addClass('prettyprint');
+          prettyPrint();
+        })
