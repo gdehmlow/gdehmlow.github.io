@@ -75,6 +75,11 @@ html, body {
 
 .top2:hover h1 {
   color: #a943dd; }
+.top2:hover .logo2:before {
+  content: url("../images/g-logo-hover.png");
+  width: 0;
+  height: 0;
+  visibility: hidden; }
 .top2:hover .logo2 > a {
   background-image: url("../images/g-logo-hover.png"); }
 
